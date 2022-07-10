@@ -1,12 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+import RegisterPage from './pages/RegisterPage';
+
+type RootStackParamList = {
+  Register: {name: string},
+  Login: {name: string},
+  Home: {name: string},
+}
+
+export type { RootStackParamList };
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterPage} />
+        <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginPage} />
+        <Stack.Screen name="Home" component={HomePage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
