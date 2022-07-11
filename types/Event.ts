@@ -3,7 +3,7 @@ interface Event {
     day: number;
     startTime: string;
     endTime: string;
-    color?: string;
+    color?: string | undefined;
     title?: string;
     location?: string;
     section?: string;
