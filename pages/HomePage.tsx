@@ -1,28 +1,31 @@
-import { Alert, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Alert, Button, Pressable, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../App';
 import TimeTable from '../components/TimeTable';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-type HomePageNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type HomePageNavigationProp = StackNavigationProp<RootStackParamList, 'AddEvent'>;
 
 type Props = {
-  navigation: HomePageNavigationProp;
+	navigation: HomePageNavigationProp;
 }
 
-const HomePage = () => {
+const HomePage = ({ navigation }: Props) => {
   return (
     <SafeAreaView>
       <View style={styles.header}>
         <Text style={styles.headerText}>
           My Schedule
         </Text>
-        <Pressable>
-          <Text style={styles.headerButton}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('AddEvent', { name: 'AddEvent' })}
+          style={styles.headerButton}
+        >
+          <Text style={styles.headerButtonIcon}>
             +
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <TimeTable
       eventGroups={[
@@ -94,6 +97,19 @@ const styles = StyleSheet.create({
   },
 
   headerButton: {
-    padding: 20,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#c1e8eb',
+    borderRadius: 50,
+    marginVertical: 10,
+    marginHorizontal: 20,
+  },
+
+  headerButtonIcon: {
+    fontSize: 16,
+    fontWeight: '500',
   }
+
 })

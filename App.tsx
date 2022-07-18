@@ -5,11 +5,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
+import AddEventPage from './pages/AddEventPage';
 
 type RootStackParamList = {
   Register: {name: string},
   Login: {name: string},
   Home: {name: string},
+  AddEvent: {name: string},
 }
 
 export type { RootStackParamList };
@@ -23,6 +25,7 @@ export default function App() {
         <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterPage} />
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginPage} />
         <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen name="AddEvent" component={AddEventPage}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
