@@ -24,7 +24,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen options={{ headerShown: false }} name="Register" component={RegisterPage} />
         <Stack.Screen options={{ headerShown: false }} name="Login" component={LoginPage} />
-        <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen options={{ headerShown: false }} name="Home" component={HomePage} />
         <Stack.Screen name="AddEvent" component={AddEventPage}/>
       </Stack.Navigator>
     </NavigationContainer>

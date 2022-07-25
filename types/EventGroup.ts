@@ -10,4 +10,4 @@ interface EventGroup {
     title?: string;
 }
 
-export { EventGroup };
+export { EventGroup, Sections };
