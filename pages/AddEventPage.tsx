@@ -17,7 +17,7 @@ type Props = {
 const {TextField} = Incubator;
 
 const toTimeString = (hours: number | undefined, minutes: number | undefined): string => {
-  return hours?.toString() + '' + minutes?.toString();
+  return hours?.toString() + ':' + minutes?.toString();
 }
 
 const AddEventPage = ({ navigation }: Props) => {
@@ -30,18 +30,14 @@ const AddEventPage = ({ navigation }: Props) => {
   const [selectedDays, setSelectedDays] = useState(new Array(5).fill(false));
   const [courseLocation, setCourseLocation] = useState('');
 
-  useEffect(() => {
-    console.log(courseStartTime);
-  })
-
   const handleAddCourse = (): EventGroup[] => {
     const eventGroups: EventGroup[] = [];
 
     const courseSections: Sections = {
       'Section': {
         days: selectedDays.map((day, index) => day ? index+1 : day).filter((day) => day !== false),
-        startTimes: new Array(selectedDays.filter(val => val === true).length).fill(courseStartTime),
-        endTimes: new Array(selectedDays.filter(val => val === true).length).fill(courseEndTime),
+        startTimes: new Array(selectedDays.filter(val => val === true).length).fill(toTimeString(courseStartTime.getUTCHours(), courseStartTime.getUTCMinutes())),
+        endTimes: new Array(selectedDays.filter(val => val === true).length).fill(toTimeString(courseEndTime.getUTCHours(), courseEndTime.getUTCMinutes())),
         locations: new Array(selectedDays.filter(val => val === true).length).fill(courseLocation),
       } 
     }
@@ -148,7 +144,7 @@ const AddEventPage = ({ navigation }: Props) => {
         <TextField
           placeholder={'BROMF 01'}
           containerStyle={styles.textFieldContainer}
-          onChangeText={(text: string) => {setCourseLocation(text); console.log(selectedDays)}}
+          onChangeText={(text: string) => setCourseLocation(text)}
           maxLength={16}
         />
       </View>
@@ -158,7 +154,13 @@ const AddEventPage = ({ navigation }: Props) => {
         label={'Add Course'}
         enableShadow
         size={Button.sizes.medium}
-        onPress={() => console.log(handleAddCourse())}
+        onPress={() => {
+          const courseObj: EventGroup[] = handleAddCourse();
+          navigation.navigate({
+            name: 'Home',
+            params: {eventGroups: courseObj}, 
+          })
+        }}
         style={styles.addCourseButton}
       />
 

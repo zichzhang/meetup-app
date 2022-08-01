@@ -6,11 +6,12 @@ import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import AddEventPage from './pages/AddEventPage';
+import { EventGroup } from './types/EventGroup';
 
 type RootStackParamList = {
   Register: {name: string},
   Login: {name: string},
-  Home: {name: string},
+  Home: {eventGroups: EventGroup[]},
   AddEvent: {name: string},
 }
 
