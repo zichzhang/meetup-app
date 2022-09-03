@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useEffect } from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { EventGroup } from '../types/EventGroup';
+import FriendsPage from './FriendsPage';
 
 type HomePageNavigationProp = StackNavigationProp<RootStackParamList, 'AddEvent'>;
 type HomePageRouteProp = RouteProp<RootStackParamList, 'Home'>
